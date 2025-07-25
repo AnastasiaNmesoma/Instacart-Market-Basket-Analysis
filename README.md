@@ -24,7 +24,7 @@ This project focuses on building and analyzing a relational database using **Ins
 - Identify **frequently bought product combinations**
 
 ## Important Note:
-For full context, including project objectives, dataset description, and business questions, please refer to the [Project documentation](Instacart%20Market%20Basket%20Analysis%20Documentation)
+For full context, including project objectives, dataset description, and business questions, please refer to the [Project documentation](Instacart%20Market%20Basket%20Analysis%20Documentation.md)
 
 ### Task 1: Database Setup & Data Import
 
