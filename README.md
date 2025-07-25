@@ -72,7 +72,7 @@ All table creation, data population, and exploratory queries are included in the
 
 ## ERD (Entity Relationship Diagram)
 > _ERD was created using SSMS Database Diagram Tool to visualize relationships clearly._  
-> _<img width="767" height="373" alt="Screenshot 2025-07-25 070315 EDA" src="https://github.com/user-attachments/assets/6bf467aa-56a2-4557-912c-4870809fe112" />_
+> _<img width="767" height="373" alt="Screenshot 2025-07-25 070315 EDA" src="https://github.com/user-attachments/assets/c936bfd1-ff2d-44f7-89b0-4774a9e542d1" />_
 
 ---
 
