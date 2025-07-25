@@ -102,7 +102,7 @@ All table creation, data population, and exploratory queries are included in the
 
 ## Dataset Source
 
-Instacart Market Basket Analysis dataset from [Kaggle](https://www.kaggle.com/c/instacart-market-basket-analysis/data).
+Instacart Market Basket Analysis dataset from [Kaggle](https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis).
 
 ---
 
