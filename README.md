@@ -88,15 +88,64 @@ All table creation, data population, and exploratory queries are included in the
 
 ---
 
+## Bonus: Market Basket Metrics (Support & Confidence)
+
+The following SQL query identifies frequently purchased product pairs by calculating support and confidence, helping to uncover product affinities
+
+``` sql
+/* Compute Support (How frequently a product appears) */
+
+-- how many times each product_id appears in the Order_Products_Prior table
+WITH ProductSupport AS 
+(
+    SELECT 
+        product_id, 
+        COUNT(*) AS product_count
+    FROM Order_Products_Prior
+    GROUP BY product_id
+),
+-- Find Frequently Bought Product Pairs
+ProductPairs AS (
+    SELECT 
+        OPP1.product_id AS product_1,
+        OPP2.product_id AS product_2,
+        COUNT(*) AS pair_count
+    FROM Order_Products_Prior OPP1
+    JOIN Order_Products_Prior OPP2 
+        ON OPP1.order_id = OPP2.order_id 
+        AND OPP1.product_id < OPP2.product_id
+    GROUP BY OPP1.product_id, OPP2.product_id
+)
+-- Compute Support & Confidence 
+SELECT 
+    pp.product_1, p1.product_name AS product_1_name,
+    pp.product_2, p2.product_name AS product_2_name,
+    pp.pair_count,
+    ps1.product_count AS product_1_count,
+    ps2.product_count AS product_2_count,
+    ROUND(pp.pair_count * 1.0 / (SELECT COUNT(DISTINCT order_id) FROM Order_Products_Prior), 4) AS support, 
+    ROUND(pp.pair_count * 1.0 / ps1.product_count, 4) AS confidence_1_to_2,
+    ROUND(pp.pair_count * 1.0 / ps2.product_count, 4) AS confidence_2_to_1
+FROM ProductPairs pp
+JOIN ProductSupport ps1 ON pp.product_1 = ps1.product_id
+JOIN ProductSupport ps2 ON pp.product_2 = ps2.product_id
+JOIN Products p1 ON pp.product_1 = p1.product_id
+JOIN Products p2 ON pp.product_2 = p2.product_id
+ORDER BY support DESC;
+```
+
 ## Key Skills Demonstrated
 
-- SQL Data Cleaning & Import
-- Relational Schema Design
-- Indexing and Optimization
-- Exploratory Data Analysis (EDA)
-- Segmentation & Customer Behavior
-- Churn Prediction
-- Product Association Analysis
+- SQL Data Cleaning & Import  
+- Relational Schema Design  
+- Indexing and Optimization  
+- Exploratory Data Analysis (EDA)  
+- Segmentation & Customer Behavior  
+- Product Association Analysis (Support & Confidence)  
+- Window Functions & CTEs  
+- Aggregate & Nested Queries  
+- Business Insight Extraction  
+- Clean Documentation & Query Structuring  
 
 ---
 
